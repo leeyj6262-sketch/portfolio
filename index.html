@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✏️ 카톡·문자로 링크 공유할 때 미리보기에 뜨는 제목/설명 -->
+<title>이용진 | 부동산금융 포트폴리오</title>
+<meta name="description" content="부동산금융 전문 인재 이용진의 포트폴리오입니다.">
+<meta property="og:title" content="이용진 | 부동산금융 포트폴리오">
+<meta property="og:description" content="숫자로 자산의 가치를 증명하는 사람">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --navy: #14213d;
+    --navy-2: #24345c;
+    --accent: #c9a24b;        /* 골드 포인트 */
+    --bg: #ffffff;
+    --bg-soft: #f6f7fa;
+    --line: #e4e7ee;
+    --text: #1b1f2a;
+    --muted: #6b7280;
+    --radius: 14px;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7; word-break: keep-all;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  .placeholder { color: #b0b6c3; font-style: italic; }
+
+  /* ── 상단 고정 메뉴 ── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; color: var(--navy); font-size: 18px; letter-spacing: -.3px; }
+  .menu { display: flex; gap: 26px; font-size: 15px; color: var(--muted); }
+  .menu a:hover { color: var(--navy); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; border-radius: 999px; font-weight: 600; font-size: 15px;
+    transition: transform .15s, box-shadow .15s, background .15s; cursor: pointer; border: 0;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { background: var(--navy-2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(20,33,61,.25); }
+  .btn-ghost { border: 1.5px solid var(--navy); color: var(--navy); background: #fff; }
+  .btn-ghost:hover { background: var(--bg-soft); }
+  nav .btn { padding: 8px 18px; font-size: 14px; }
+
+  /* ── 섹션 공통 ── */
+  section { padding: 96px 0; }
+  section.soft { background: var(--bg-soft); }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+  h2 { font-size: 32px; color: var(--navy); margin: 6px 0 40px; letter-spacing: -.5px; }
+
+  /* ── 1. 첫 화면 ── */
+  .hero { padding: 110px 0 100px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .hero-tag { display: inline-block; background: var(--bg-soft); color: var(--navy); font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+  .hero h1 { font-size: 52px; line-height: 1.25; color: var(--navy); letter-spacing: -1.2px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { font-size: 19px; color: var(--muted); margin: 22px 0 34px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  /* 명함 카드: 사진 왼쪽 + 정보 오른쪽 */
+  .namecard {
+    display: grid; grid-template-columns: 42% 1fr; background: #fff;
+    border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+    box-shadow: 0 24px 48px rgba(20,33,61,.14); position: relative;
+  }
+  .namecard::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy), var(--accent)); z-index: 1; }
+  .photo {
+    aspect-ratio: 3/4; background: linear-gradient(145deg, var(--navy), var(--navy-2));
+    display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55);
+    font-size: 13px; text-align: center; overflow: hidden; position: relative;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .photo.has-img { background: #fff; }
+  .photo.has-img::after { display: none; }
+  .photo::after { content: ''; position: absolute; inset: auto -25% -25% auto; width: 70%; height: 50%; border-radius: 50%; background: var(--accent); opacity: .2; }
+  .nc-body { padding: 26px 22px; display: flex; flex-direction: column; justify-content: center; }
+  .nc-name { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -.3px; }
+  .nc-role { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 18px; }
+  .nc-row { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; padding: 8px 0; border-top: 1px solid var(--line); }
+  .nc-row .ic { width: 18px; flex-shrink: 0; color: var(--accent); font-weight: 700; }
+  .nc-row a:hover { color: var(--navy); text-decoration: underline; }
+  .hero-side { display: flex; flex-direction: column; gap: 14px; }
+  .socials { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .social { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--navy); background: #fff; transition: .15s; }
+  .social svg { width: 16px; height: 16px; fill: currentColor; }
+  .social:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .stat { border-top: 2px solid var(--accent); padding-top: 14px; }
+  .stat b { display: block; font-size: 30px; color: var(--navy); }
+  .stat span { font-size: 14px; color: var(--muted); }
+
+  /* ── 1-1. My Edge ── */
+  .edge { background: var(--navy); color: #fff; }
+  .edge h2 { color: #fff; margin-bottom: 14px; }
+  .edge-lead { color: rgba(255,255,255,.72); font-size: 17px; max-width: 720px; margin-bottom: 40px; }
+  .edge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .edge-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; }
+  .edge-from, .edge-to { font-size: 16px; font-weight: 700; line-height: 1.5; }
+  .edge-from { color: rgba(255,255,255,.85); }
+  .edge-from span, .edge-to span { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .edge-from span { color: rgba(255,255,255,.5); }
+  .edge-to span { color: var(--accent); }
+  .edge-to b { color: var(--accent); }
+  .edge-arrow { color: var(--accent); font-size: 20px; margin: 10px 0; }
+  .edge-card p { font-size: 14px; color: rgba(255,255,255,.7); margin: 14px 0 18px; flex: 1; }
+  .edge-proof { font-size: 12.5px; color: rgba(255,255,255,.6); border-top: 1px solid rgba(255,255,255,.14); padding-top: 12px; }
+  .edge-proof:hover { color: var(--accent); }
+
+  /* ── 2. About ── */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .about-text p { font-size: 17px; margin-bottom: 16px; }
+  .info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .info-row { display: grid; grid-template-columns: 84px 1fr; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+  .info-row:last-child { border-bottom: 0; }
+  .info-row dt { color: var(--muted); }
+  .info-row dd { font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { background: var(--navy); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 14px; }
+  .chip.light { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+
+  /* 성격 · MBTI */
+  .persona { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+  .persona-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .persona-card .big { font-size: 34px; font-weight: 800; color: var(--navy); letter-spacing: 1px; }
+  .persona-card h4 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .persona-card p { font-size: 15px; color: var(--muted); }
+
+  /* ── 3. 프로젝트 (대학생활 동안 만든 자료 전체) ── */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+  .filter { border: 1px solid var(--line); background: #fff; color: var(--muted); padding: 7px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: .15s; }
+  .filter:hover { border-color: var(--accent); color: var(--navy); }
+  .filter.active { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+  .filter .cnt { font-size: 12px; opacity: .7; margin-left: 4px; }
+  .archive { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .doc { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s, border-color .2s; color: inherit; }
+  .doc:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(20,33,61,.1); border-color: var(--accent); }
+  .doc.hide { display: none; }
+  .doc.featured { border: 1.5px solid var(--accent); }
+  .doc-thumb { aspect-ratio: 16/9; background: var(--bg-soft); display: flex; align-items: center; justify-content: center; color: #b0b6c3; font-size: 13px; position: relative; }
+  .doc-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .doc-thumb.text { background: linear-gradient(140deg, var(--navy), var(--navy-2)); color: #fff; }
+  .doc-thumb.text .tt { text-align: center; font-size: 15px; line-height: 1.35; color: rgba(255,255,255,.8); }
+  .doc-thumb.text .tt b, .doc-thumb.text .tt { font-weight: 800; }
+  .doc-thumb.text .tt b { display: block; font-size: 34px; color: var(--accent); }
+  .doc-thumb.text .tt small { display: block; font-size: 11px; font-weight: 600; letter-spacing: 1px; color: rgba(255,255,255,.6); margin-top: 4px; }
+  .section-lead { color: var(--muted); font-size: 16px; margin: -26px 0 28px; max-width: 720px; }
+  .doc-type { position: absolute; top: 12px; left: 12px; background: var(--navy); color: var(--accent); font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; letter-spacing: .5px; }
+  .doc-star { position: absolute; top: 12px; right: 12px; background: var(--accent); color: var(--navy); font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; }
+  .doc-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .doc-field { display: inline-block; align-self: flex-start; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 5px; margin-bottom: 8px; }
+  .f-finance { background: #eef1f8; color: var(--navy); }
+  .f-urban { background: #ecf5ef; color: #2f6b45; }
+  .f-proptech { background: #faf3e3; color: #8a6a1f; }
+  .f-etc { background: #f1f1f3; color: var(--muted); }
+  .doc-meta { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .doc-thumb.text .tt { font-size: 26px; letter-spacing: 1px; }
+  .doc h4 { font-size: 16px; color: var(--navy); margin: 4px 0 6px; line-height: 1.45; }
+  .doc p { font-size: 14px; color: var(--muted); flex: 1; }
+  .doc-key { margin-top: 12px; padding: 9px 12px; background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 13px; }
+  .doc-key b { color: var(--navy); font-weight: 800; }
+  .doc-link { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--navy); }
+  .doc:hover .doc-link { color: var(--accent); }
+
+  /* ── 4. 역량 ── */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .skill-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .skill-group h4 { color: var(--navy); margin-bottom: 14px; font-size: 17px; }
+  .bar { margin-bottom: 12px; font-size: 14px; }
+  .bar .track { height: 6px; background: var(--bg-soft); border-radius: 99px; margin-top: 5px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--navy); border-radius: 99px; }
+
+  /* ── 5. 학력 · 경험 타임라인 ── */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .cols h3 { color: var(--navy); font-size: 19px; margin-bottom: 20px; }
+  .timeline { border-left: 2px solid var(--line); padding-left: 24px; }
+  .tl-item { position: relative; padding-bottom: 26px; }
+  .tl-item::before { content: ''; position: absolute; left: -31px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
+  .tl-item .date { font-size: 13px; color: var(--accent); font-weight: 700; }
+  .tl-item h4 { font-size: 16px; color: var(--navy); }
+  .tl-item p { font-size: 14px; color: var(--muted); }
+  .certs { display: grid; gap: 12px; }
+  .cert { display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; background: #fff; }
+  .cert b { color: var(--navy); }
+  .cert span { font-size: 14px; color: var(--muted); }
+
+  /* ── 6. 함께 일하면 ── */
+  .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .why-card { padding: 30px; border-radius: var(--radius); background: var(--navy); color: #fff; }
+  .why-card .num { color: var(--accent); font-weight: 800; font-size: 14px; }
+  .why-card h4 { font-size: 19px; margin: 8px 0 10px; }
+  .why-card p { font-size: 15px; color: rgba(255,255,255,.75); }
+
+  /* ── 7. 연락처 ── */
+  .contact { background: var(--navy); color: #fff; text-align: center; }
+  .contact h2 { color: #fff; margin-bottom: 14px; }
+  .contact p { color: rgba(255,255,255,.75); font-size: 17px; }
+  .contact-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+  .contact .btn-primary { background: var(--accent); color: var(--navy); }
+  .contact .btn-primary:hover { background: #d8b45f; }
+  .contact .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+  .contact .btn-ghost:hover { background: rgba(255,255,255,.08); }
+  .contact-list { margin-top: 36px; font-size: 15px; color: rgba(255,255,255,.7); display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  footer { background: var(--navy); color: rgba(255,255,255,.4); text-align: center; font-size: 13px; padding: 0 0 30px; }
+
+  .toast { position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%) translateY(20px); background: var(--text); color: #fff; padding: 12px 22px; border-radius: 999px; font-size: 14px; opacity: 0; transition: .25s; pointer-events: none; z-index: 99; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* 스크롤 등장 효과 */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+  .reveal.on { opacity: 1; transform: none; }
+
+  /* ── 모바일 (QR로 들어오면 대부분 폰) ── */
+  @media (max-width: 820px) {
+    .menu { display: none; }
+    section { padding: 68px 0; }
+    .hero { padding: 56px 0 64px; }
+    .hero .wrap, .about-grid, .cols { grid-template-columns: 1fr; gap: 36px; }
+    .hero-side { order: -1; }
+    .namecard { grid-template-columns: 40% 1fr; }
+    .namecard .photo { aspect-ratio: auto; min-height: 190px; }
+    .nc-body { padding: 18px 16px; }
+    .nc-name { font-size: 20px; }
+    .nc-role { margin-bottom: 10px; }
+    .nc-row { font-size: 13px; padding: 6px 0; word-break: break-all; }
+    .archive { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 34px; }
+    .hero p.lead { font-size: 17px; }
+    .stats { margin-top: 40px; }
+    .stat b { font-size: 24px; }
+    h2 { font-size: 26px; margin-bottom: 28px; }
+    .persona, .projects, .skills, .why, .edge-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ 상단 메뉴 ════════ -->
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">이용진</a>
+    <div class="menu">
+      <a href="#edge">My Edge</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#career">Career</a>
+    </div>
+    <a href="#contact" class="btn btn-primary">연락하기</a>
+  </div>
+</nav>
+
+<!-- ════════ 1. 첫 화면 ════════ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="hero-tag">🏢 도시계획을 아는 부동산금융 인재</span>
+      <!-- ✏️ 한 줄 정체성 (나중에 교체 예정. 후보:
+           · 데이터로 부동산의 내일을 읽는 이용진입니다
+           · 공간을 자산으로, 자산을 숫자로 — 이용진
+           · 리츠를 뜯어보는 게 제일 재밌는 이용진입니다
+           <em>…</em> 안에 넣은 단어가 골드색으로 강조됨) -->
+      <h1>숫자로 자산의 가치를<br><em>증명하는</em> 이용진입니다</h1>
+      <p class="lead"><span data-i="학교">단국대학교</span> <span data-i="학과학년">도시계획부동산학부 3학년</span>. 리츠·투자분석 등 부동산금융을 중심으로 공부하고, 도시계획 지식으로 숫자 뒤의 입지와 개발 맥락까지 읽습니다.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">함께 일하고 싶다면 →</a>
+        <a href="#projects" class="btn btn-ghost">프로젝트 보기</a>
+      </div>
+      <!-- ✏️ 나를 보여주는 숫자 3개 -->
+      <div class="stats">
+        <div class="stat"><b>14개</b><span>전공 프로젝트</span></div>
+        <div class="stat" data-row><b data-i="토익"></b><span>TOEIC</span></div>
+        <div class="stat"><b>30,537건</b><span>직접 분석한 실거래 데이터</span></div>
+      </div>
+    </div>
+    <div class="hero-side">
+    <!-- ✏️ 명함 카드 -->
+    <div class="namecard">
+      <!-- 프로필 사진: images/profile.jpg 를 바꾸면 교체됨 -->
+      <div class="photo has-img">
+        <img src="images/profile.jpg" alt="이용진 프로필 사진">
+      </div>
+      <div class="nc-body">
+        <div class="nc-name" data-i="이름">이용진</div>
+        <div class="nc-role">Real Estate Finance</div>
+        <div class="nc-row"><span class="ic">🎓</span><span><span data-i="학교">단국대학교</span><br><span data-i="학과학년">도시계획부동산학부 3학년</span></span></div>
+        <div class="nc-row" data-row><span class="ic">✉️</span><a data-link="이메일" data-pre="mailto:" data-i="이메일"></a></div>
+        <div class="nc-row" data-row><span class="ic">📞</span><a data-link="전화" data-pre="tel:" data-i="전화"></a></div>
+      </div>
+    </div>
+    <!-- SNS 링크: info.js 에 주소를 적으면 버튼이 나타남 -->
+    <div class="socials">
+      <a class="social" data-link="링크드인" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.830-2.050 3.770-2.050C20.6 8.65 21 11.3 21 14.6V21h-4v-5.7c0-1.36-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21H9z"/></svg>LinkedIn</a>
+      <a class="social" data-link="블로그" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM8 7v10h3.2v-5.1L14.6 17H18V7h-3.2v5.1L11.4 7z"/></svg>Blog</a>
+      <a class="social" data-link="인스타그램" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm3.7 14.5a3.7 3.7 0 0 1-3.7 3.7h-9a3.7 3.7 0 0 1-3.7-3.7v-9a3.7 3.7 0 0 1 3.7-3.7h9a3.7 3.7 0 0 1 3.7 3.7z"/></svg>Instagram</a>
+    </div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ 1-1. My Edge: 도시계획 지식이 부동산금융에 어떻게 쓰이는가 ════════ -->
+<section class="edge" id="edge">
+  <div class="wrap">
+    <div class="eyebrow reveal">My Edge</div>
+    <h2 class="reveal">부동산금융이 주력, 도시계획이 무기입니다</h2>
+    <p class="edge-lead reveal">숫자만 보는 분석은 입지를 놓치고, 공간만 보는 계획은 수익성을 놓칩니다. 저는 도시계획에서 배운 것을 부동산금융 판단에 이렇게 씁니다.</p>
+    <div class="edge-grid">
+      <article class="edge-card reveal">
+        <div class="edge-from"><span>도시계획에서 배운 것</span>용도지역과 도시기본계획을 읽습니다</div>
+        <div class="edge-arrow">↓</div>
+        <div class="edge-to"><span>부동산금융에서 쓰는 법</span>땅의 지금 가격이 아니라 <b>바뀔 수 있는 가치</b>를 봅니다</div>
+        <p>시가화 예정용지, 용도 변경 가능성, 공간구조 재편 방향은 개발 사업성과 자산가치 전망의 출발점입니다.</p>
+        <a href="#projects" class="edge-proof">근거 · 대전 2040 도시기본계획 분석, 춘천 토지이용계획</a>
+      </article>
+      <article class="edge-card reveal">
+        <div class="edge-from"><span>도시계획에서 배운 것</span>개발사업이 왜 성공하고 실패하는지 압니다</div>
+        <div class="edge-arrow">↓</div>
+        <div class="edge-to"><span>부동산금융에서 쓰는 법</span><b>공실·미분양 리스크</b>를 입지와 앵커시설로 따집니다</div>
+        <p>같은 업무지구라도 문정은 채워지고 동탄 테크노밸리는 공실률 50~60%가 된 이유를 비교해 봤습니다.</p>
+        <a href="#projects" class="edge-proof">근거 · 동탄 테크노밸리 연구계획, 래미안 퍼스티지 단지 분석</a>
+      </article>
+      <article class="edge-card reveal">
+        <div class="edge-from"><span>도시계획에서 배운 것</span>공원·교통 인프라가 도시를 바꾸는 방식을 압니다</div>
+        <div class="edge-arrow">↓</div>
+        <div class="edge-to"><span>부동산금융에서 쓰는 법</span>인프라 변화를 <b>가격·수요 가정</b>에 반영합니다</div>
+        <p>GTX-A 개통 기대가 파주 집값에 준 영향, 공원 배치에 따라 달라지는 가격 프리미엄을 직접 분석했습니다.</p>
+        <a href="#projects" class="edge-proof">근거 · 파주시 가격탄력성 실증분석, 도시공원 배치 패턴 연구</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 2. About + 기본정보 + 성격 ════════ -->
+<section class="soft" id="about">
+  <div class="wrap">
+    <div class="eyebrow reveal">About me</div>
+    <h2 class="reveal">저는 이런 사람입니다</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <!-- ✏️ 자기소개 3문단: 왜 부동산금융인가 / 무엇을 해왔나 / 앞으로 무엇을 하고 싶나 -->
+        <p data-i="자기소개1" data-ph="[자기소개 1 — 왜 부동산금융에 관심을 갖게 됐는지]"></p>
+        <p data-i="자기소개2" data-ph="[자기소개 2 — 무엇을 공부하고 만들어 왔는지]"></p>
+        <p data-i="자기소개3" data-ph="[자기소개 3 — 입사하면 어떤 일을 하고 싶은지]"></p>
+        <div class="chips">
+          <span class="chip">#리츠분석</span>
+          <span class="chip">#부동산투자</span>
+          <span class="chip">#도시계획</span>
+          <span class="chip">#프롭테크</span>
+        </div>
+      </div>
+      <!-- ✏️ 기본 정보 -->
+      <dl class="info-card reveal">
+        <div class="info-row"><dt>이름</dt><dd data-i="이름">이용진</dd></div>
+        <div class="info-row"><dt>학력</dt><dd><span data-i="학교">단국대학교</span> <span data-i="학과학년">도시계획부동산학부 3학년</span></dd></div>
+        <div class="info-row" data-row><dt>졸업예정</dt><dd data-i="졸업예정"></dd></div>
+        <div class="info-row" data-row><dt>거주지</dt><dd data-i="거주지"></dd></div>
+        <div class="info-row" data-row><dt>희망직무</dt><dd data-i="희망직무"></dd></div>
+        <div class="info-row" data-row><dt>관심분야</dt><dd data-i="관심분야"></dd></div>
+        <div class="info-row" data-row><dt>취미</dt><dd data-i="취미"></dd></div>
+      </dl>
+    </div>
+
+    <!-- ✏️ 성격 · MBTI -->
+    <div class="persona">
+      <div class="persona-card reveal">
+        <div class="big" data-i="MBTI" data-ph="[MBTI]"></div>
+        <h4 data-i="MBTI별명" data-ph="[MBTI 별명]"></h4>
+        <p data-i="MBTI설명" data-ph="[이 성향이 일할 때 어떻게 드러나는지]"></p>
+      </div>
+      <div class="persona-card reveal">
+        <h4>💪 강점</h4>
+        <p data-i="강점" data-ph="[성격 장점 + 근거가 되는 짧은 에피소드]"></p>
+      </div>
+      <div class="persona-card reveal">
+        <h4>🤝 일하는 방식</h4>
+        <p data-i="일하는방식" data-ph="[팀에서 주로 맡는 역할, 협업 스타일]"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 3. 프로젝트 (대학생활 동안 만든 자료 전체) ════════ -->
+<section class="soft" id="projects">
+  <div class="wrap">
+    <div class="eyebrow reveal">Projects</div>
+    <h2 class="reveal">대학생활 동안 만든 것들</h2>
+    <p class="section-lead reveal">부동산금융·경제 분석이 중심이고, 도시계획 프로젝트는 그 분석의 바탕이 되는 입지와 개발 이해를 보여줍니다. 카드를 누르면 원본 자료가 열립니다.</p>
+    <!-- 분야 필터: 버튼 data-cat 과 카드 data-cat 이 같아야 작동 (개수는 자동 계산) -->
+    <div class="filters reveal">
+      <button class="filter active" data-cat="all">전체</button>
+      <button class="filter" data-cat="finance">부동산금융·경제</button>
+      <button class="filter" data-cat="urban">도시계획 (기반 지식)</button>
+      <button class="filter" data-cat="tech">프롭테크·기술</button>
+    </div>
+    <div class="archive">
+      <!-- ✏️ 자료 카드 1개 = <a class="doc"> 1개. 카드 전체를 누르면 파일이 새 창으로 열림
+           · 파일: files 폴더 / 썸네일: images 폴더
+           · data-cat: finance=부동산금융·경제, urban=도시계획, tech=프롭테크·기술
+           · 대표작: class="doc featured" + ★ 대표 배지 → 맨 앞에 배치
+           · 썸네일 없는 카드는 doc-thumb text 로 큰 글자 표시 -->
+      <a class="doc featured reveal" data-cat="finance" href="files/2026-1_shinhan-alpha-reit.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2026-1_shinhan-alpha-reit.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span><span class="doc-star">★ 대표</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-finance">부동산금융·경제</span>
+          <div class="doc-meta">2026-1 · 부동산금융입문 · 개인</div>
+          <h4>신한알파리츠 가치평가·리스크 분석</h4>
+          <p>오피스 리츠 신한알파리츠를 가치평가, 금리 충격 시계열, 변동성(GARCH) 하방위험, 포트폴리오 최적화 네 가지 각도로 분석. 1,914거래일 시세와 한국은행 ECOS 123개월 거시 데이터를 직접 수집.</p>
+          <div class="doc-key">Cap Rate +100bp → 자산가치 <b>−16.7%</b></div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc featured reveal" data-cat="finance" href="files/2026-1_paju-price-elasticity.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2026-1_paju-price-elasticity.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span><span class="doc-star">★ 대표</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-finance">부동산금융·경제</span>
+          <div class="doc-meta">2026-1 · 부동산경제입문 · 개인</div>
+          <h4>주택 공급 정책의 역설: 파주시 아파트 가격탄력성 실증분석</h4>
+          <p>2020~2025년 파주시 아파트 실거래와 R-ONE 가격지수 72개월로 ‘밀 시장 탄력성 역설’이 주택시장에도 나타나는지 검증. 단기 비탄력·중장기 탄력의 이중 수요 구조를 확인.</p>
+          <div class="doc-key">실거래 <b>30,537건</b> 분석 → 시장을 움직인 건 공급보다 금리·규제</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc featured reveal" data-cat="urban" href="files/2026-1_park-layout-research-plan.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2026-1_park-layout-research-plan.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span><span class="doc-star">★ 대표</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2026-1 · 도시및지역연구방법 · 개인</div>
+          <h4>도시공원 배치 패턴이 부동산 가격과 사회적 형평성에 미치는 영향</h4>
+          <p>경의선숲길(선형)·마곡지구(분산)·서울숲(대형 단일) 세 배치 패턴이 주변 집값과 소득계층별 공원 접근성에 미치는 영향을 같은 틀로 비교하는 연구설계.</p>
+          <div class="doc-key">공원은 세금으로, 가격 편익은 인접 소유자에게 — <b>‘공공재의 역설’</b></div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="finance" href="files/2026-1_seoul-apartment-market.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2026-1_seoul-apartment-market.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-finance">부동산금융·경제</span>
+          <div class="doc-meta">2026-1 · 부동산경제입문 · 개인</div>
+          <h4>서울 아파트 시장 4각도 분석: 수요·비용·DW 4분면·토허제</h4>
+          <p>효용함수 주거수요, 관리비 비용함수 회귀, DiPasquale–Wheaton 4분면 시뮬레이션, 토지거래허가구역 사건연구를 하나의 결론으로 연결.</p>
+          <div class="doc-key">토허제 해제 후 송파구 가격 <b>+6.33%</b>, 거래량 <b>+52%</b></div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="finance" href="files/2026-1_listed-reits-analysis.xlsx" target="_blank" rel="noopener">
+        <div class="doc-thumb text"><span class="doc-type">XLSX</span><div class="tt">P/NAV<br><b>0.669</b></div></div>
+        <div class="doc-body">
+          <span class="doc-field f-finance">부동산금융·경제</span>
+          <div class="doc-meta">2026-1 · 부동산금융입문 · 개인</div>
+          <h4>국내외 상장리츠 종합 분석 (Excel)</h4>
+          <p>미국 리츠 ETF와 국내 상장리츠의 변동성(EWMA·GARCH-t), VaR/CVaR, 금리 민감도 회귀, P/NAV 상대가치까지 9개 시트로 분석.</p>
+          <div class="doc-key">신한알파리츠 P/NAV <b>0.669</b> (NAV 대비 33.1% 할인)</div>
+          <span class="doc-link">엑셀 받기 ↓</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-2_park-premium-statistics.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-2_park-premium-statistics.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-2 · 사회통계이해 · 개인</div>
+          <h4>공세권·숲세권이 주거시장에 미치는 영향</h4>
+          <p>공세권·숲세권의 개념과 선호 이유, 아파트 단지 내 녹지비율 증가와 가격 차이, 녹지 격차 문제까지 정리하고 내 생각을 더한 발표.</p>
+          <div class="doc-key">부동산 관점 · 녹지 접근성이 <b>가격 프리미엄</b>이 되는 구조</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-2_dongtan-technovalley.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-2_dongtan-technovalley.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-2 · 도시개발론 · 팀 · 발표 담당</div>
+          <h4>동탄 테크노밸리 문제 해결방안 연구계획</h4>
+          <p>공실이 심각한 동탄 테크노밸리를 법조단지 앵커시설과 입지로 성공한 문정 도시개발지구와 비교해 원인과 해법을 찾는 연구계획.</p>
+          <div class="doc-key">공실률 <b>50~60%</b> 동탄 vs 앵커시설로 성공한 문정지구</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-2_raemian-firstige.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-2_raemian-firstige.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-2 · 단지계획 · 팀 4명</div>
+          <h4>래미안 퍼스티지 단지계획 사례 분석</h4>
+          <p>2009년 당시 프리미엄 주거의 표준이던 래미안 퍼스티지가 15년이 지난 지금도 경쟁력이 있는지, 신축 단지와 비교해 단지계획의 시대적 경쟁력을 분석.</p>
+          <div class="doc-key">부동산 관점 · 입지·조경·학군, 시간이 지나도 남는 <b>자산가치 요소</b></div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-2_dankook-campus-plan.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-2_dankook-campus-plan.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-2 · 단지계획 · 팀 4명</div>
+          <h4>단국대 가치 높이기 프로젝트</h4>
+          <p>랜드마크 부재와 가파른 오르막 문제를 진단하고, 평화의 광장 보행자 전용화와 지하도로, GTX 구성역과 이어지는 후문 통학버스를 제안.</p>
+          <div class="doc-key">부동산 관점 · GTX 구성역 개통을 <b>가치 상승</b>으로 잇는 계획</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-2_hongkong-housing.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-2_hongkong-housing.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-2 · 주택개발론 · 팀 4명</div>
+          <h4>홍콩 닭장 아파트: 가난한 이들이 가장 비싼 공간에 갇히는 이유</h4>
+          <p>홍콩의 도시 특성과 고밀 주거의 형성 배경, 주거시장의 구조적 문제, 고밀 주거 사례와 미래 개발 계획을 분석.</p>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-1_chuncheon-land-use.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb text"><span class="doc-type">PDF</span><div class="tt">MCGA<br><small>MAKE CHUNCHEON GREAT AGAIN</small></div></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-1 · 토지이용계획 · 팀 2명</div>
+          <h4>MCGA: 춘천을 다시 위대하게</h4>
+          <p>춘천역과 하중도(레고랜드) 사이 35만㎡ 부지를 SWOT 분석한 뒤, 데이터센터·박물관·주상복합·수변공원을 배치한 토지이용계획.</p>
+          <div class="doc-key">학령인구 감소·아파트 공급 과잉 → 학교·아파트 대신 관광·데이터센터</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-1_asan-rose-regeneration.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-1_asan-rose-regeneration.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-1 · 도시재생 · 팀 2명</div>
+          <h4>아산 원도심 장미마을 R.O.S.E</h4>
+          <p>유흥업소 밀집지였던 아산 장미마을을 대상으로, 과거를 지우지 않고 재해석하는 도시재생 전략과 핵심 인프라, 국내외 사례, 정책 제언을 정리.</p>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="urban" href="files/2025-1_daejeon-city-plan.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb"><img src="images/2025-1_daejeon-city-plan.jpg" alt="" loading="lazy"><span class="doc-type">PDF</span></div>
+        <div class="doc-body">
+          <span class="doc-field f-urban">도시계획</span>
+          <div class="doc-meta">2025-1 · 도시계획 · 개인</div>
+          <h4>대전광역시 도시 분석과 2040 도시기본계획</h4>
+          <p>대전의 역사·지리·산업 구조를 살피고, 2040 대전도시기본계획의 공간구조(3도심·2특화거점·4관문거점)와 토지이용계획을 분석.</p>
+          <div class="doc-key">부동산 관점 · 시가화 예정용지 <b>22.74㎢</b>, 앞으로 개발될 땅 읽기</div>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="tech" href="files/2025-1_uam-accident-response.pdf" target="_blank" rel="noopener">
+        <div class="doc-thumb text"><span class="doc-type">PDF</span><div class="tt">UAM<br><small>공중 첨단교통 사고 대응</small></div></div>
+        <div class="doc-body">
+          <span class="doc-field f-proptech">프롭테크·기술</span>
+          <div class="doc-meta">2025-1 · 교통계획 · 개인</div>
+          <h4>UAM·드론 등 공중 첨단교통의 사고 대응 방안</h4>
+          <p>150~1,500ft 저고도 도심 상공 사고의 딜레마를 정의하고, 초고속 전개·다중 배열 낙하산 등 탑승자 생명을 최우선으로 한 대응 방안을 구상.</p>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+      <a class="doc reveal" data-cat="tech" href="#top">
+        <div class="doc-thumb text"><span class="doc-type">WEB</span><div class="tt">Vibe<br><small>Coding Portfolio</small></div></div>
+        <div class="doc-body">
+          <span class="doc-field f-proptech">프롭테크·기술</span>
+          <div class="doc-meta">2026-2 · 부동산 프롭테크 · 개인</div>
+          <h4>바이브코딩으로 만든 이 포트폴리오</h4>
+          <p>코딩 비전공자로서 AI와 대화하며 기획·디자인·배포까지 직접 완성한 개인 포트폴리오 웹사이트.</p>
+          <span class="doc-link">자료 보기 ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 4. 역량 ════════ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow reveal">Skills</div>
+    <h2 class="reveal">할 수 있는 것</h2>
+    <div class="skills">
+      <!-- ✏️ 숫자(%)는 style="width:00%" 부분을 바꾸면 됨 -->
+      <div class="skill-group reveal">
+        <h4>📊 부동산금융 지식</h4>
+        <div class="bar">리츠 구조·배당 분석<div class="track"><div class="fill" style="width:80%"></div></div></div>
+        <div class="bar">[투자지표 NOI·Cap rate 등]<div class="track"><div class="fill" style="width:70%"></div></div></div>
+        <div class="bar">[스킬]<div class="track"><div class="fill" style="width:60%"></div></div></div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>🏙️ 도시계획 (부동산을 읽는 바탕)</h4>
+        <div class="bar">[토지이용·도시계획 제도]<div class="track"><div class="fill" style="width:75%"></div></div></div>
+        <div class="bar">[입지·상권 분석]<div class="track"><div class="fill" style="width:70%"></div></div></div>
+        <div class="bar">[GIS / 도면 툴]<div class="track"><div class="fill" style="width:60%"></div></div></div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>💻 툴 · 데이터</h4>
+        <div class="bar">Excel<div class="track"><div class="fill" style="width:80%"></div></div></div>
+        <div class="bar">[PowerPoint]<div class="track"><div class="fill" style="width:75%"></div></div></div>
+        <div class="bar">AI 활용 · 바이브코딩<div class="track"><div class="fill" style="width:70%"></div></div></div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>🌐 어학 · 소통</h4>
+        <div class="bar">영어 (TOEIC <span data-i="토익"></span>)<div class="track"><div class="fill" style="width:70%"></div></div></div>
+        <div class="bar">[발표·보고서 작성]<div class="track"><div class="fill" style="width:80%"></div></div></div>
+        <div class="bar">[스킬]<div class="track"><div class="fill" style="width:60%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 5. 학력 · 경험 · 자격증 ════════ -->
+<section class="soft" id="career">
+  <div class="wrap">
+    <div class="eyebrow reveal">Career</div>
+    <h2 class="reveal">걸어온 길</h2>
+    <div class="cols">
+      <div class="reveal">
+        <h3>학력 · 대외활동 · 수상</h3>
+        <!-- ✏️ 최신순으로 -->
+        <div class="timeline">
+          <div class="tl-item"><div class="date">[2026.09 – 현재]</div><h4>[활동명 / 인턴]</h4><p>[무엇을 했고 무엇을 얻었는지 한 줄]</p></div>
+          <div class="tl-item"><div class="date">[2025.00]</div><h4>[공모전 · 수상]</h4><p>[내용]</p></div>
+          <div class="tl-item"><div class="date">[20XX.03 – 현재]</div><h4>[학교] [학과]</h4><p>[주요 수강과목: 부동산금융입문, 부동산 프롭테크, 도시계획 관련 과목 …]</p></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3>자격증 · 어학</h3>
+        <div class="certs">
+          <!-- info.js 에 적은 값이 표시됨 (비우면 숨김) -->
+          <div class="cert" data-row><b>TOEIC</b><span data-i="토익"></span></div>
+          <div class="cert" data-row><b>한국사능력검정시험</b><span data-i="한능검"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 6. 함께 일하면 좋은 이유 ════════ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">Why me</div>
+    <h2 class="reveal">저와 함께 일하면</h2>
+    <div class="why">
+      <div class="why-card reveal"><div class="num">01</div><h4>[약속 1]</h4><p>[근거가 되는 경험]</p></div>
+      <div class="why-card reveal"><div class="num">02</div><h4>[약속 2]</h4><p>[근거가 되는 경험]</p></div>
+      <div class="why-card reveal"><div class="num">03</div><h4>[약속 3]</h4><p>[근거가 되는 경험]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 7. 연락처 ════════ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>함께 일할 기회를 기다립니다</h2>
+    <p>인턴, 프로젝트, 커피챗 모두 환영합니다. 편한 방법으로 연락주세요.</p>
+    <!-- 연락처는 info.js 에 적으면 버튼이 나타남 -->
+    <div class="contact-btns">
+      <a class="btn btn-primary" data-link="이메일" data-pre="mailto:">✉️ 이메일 보내기</a>
+      <button class="btn btn-ghost" data-link="이메일" onclick="copyEmail()">📋 이메일 복사</button>
+      <a class="btn btn-ghost" data-link="전화" data-pre="tel:">📞 전화하기</a>
+      <a class="btn btn-ghost" data-link="카카오오픈채팅" target="_blank" rel="noopener">💬 카카오톡</a>
+    </div>
+    <div class="contact-list">
+      <span data-row>✉️ <span data-i="이메일"></span></span>
+      <span data-row>📞 <span data-i="전화"></span></span>
+    </div>
+  </div>
+</section>
+<footer>© 2026 이용진 · Built with vibe coding</footer>
+
+<div class="toast" id="toast">이메일 주소를 복사했어요</div>
+
+<script src="info.js"></script>
+<script>
+  // info.js 의 값을 화면에 채움. 빈 값이면 그 줄(data-row)이나 버튼(data-link)을 숨김
+  const I = window.MY_INFO || {};
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const v = (I[el.dataset.i] || '').trim();
+    if (v) el.textContent = v;
+    else if (el.closest('[data-row]')) el.closest('[data-row]').style.display = 'none';
+    else if (el.dataset.ph) { el.textContent = el.dataset.ph; el.classList.add('placeholder'); }
+  });
+  document.querySelectorAll('[data-link]').forEach(el => {
+    const v = (I[el.dataset.link] || '').trim();
+    if (!v) { el.style.display = 'none'; return; }
+    const pre = el.dataset.pre || '';
+    if (el.tagName === 'A') el.href = pre + (pre === 'tel:' ? v.replace(/[^0-9+]/g, '') : v);
+  });
+  if (I.이름) document.title = I.이름 + ' | 부동산금융 포트폴리오';
+  const EMAIL = I.이메일 || '';
+  function copyEmail() {
+    const done = () => { const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); };
+    if (navigator.clipboard) navigator.clipboard.writeText(EMAIL).then(done, done); else done();
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // 프로젝트 분야 필터 + 개수 자동 표시
+  document.querySelectorAll('.filter').forEach(btn => {
+    const c = btn.dataset.cat;
+    const n = c === 'all' ? document.querySelectorAll('.doc').length : document.querySelectorAll('.doc[data-cat="' + c + '"]').length;
+    btn.insertAdjacentHTML('beforeend', '<span class="cnt">' + n + '</span>');
+    if (!n) btn.style.display = 'none';
+  });
+  document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.toggle('active', b === btn));
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('.doc').forEach(d => d.classList.toggle('hide', cat !== 'all' && d.dataset.cat !== cat));
+  }));
+</script>
+</body>
+</html>

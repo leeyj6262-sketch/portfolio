@@ -67,27 +67,20 @@
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero p.lead { font-size: 19px; color: var(--muted); margin: 22px 0 34px; }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  /* 명함 카드: 사진 왼쪽 + 정보 오른쪽 */
+  /* 명함 카드: 작은 원형 사진 + 이름, 아래에 정보 */
+  [hidden] { display: none !important; }
   .namecard {
-    display: grid; grid-template-columns: 42% 1fr; background: #fff;
-    border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
-    box-shadow: 0 24px 48px rgba(20,33,61,.14); position: relative;
+    background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+    box-shadow: 0 24px 48px rgba(20,33,61,.14); position: relative; padding: 30px 28px 22px;
   }
-  .namecard::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy), var(--accent)); z-index: 1; }
-  .photo {
-    aspect-ratio: 3/4; background: linear-gradient(145deg, var(--navy), var(--navy-2));
-    display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55);
-    font-size: 13px; text-align: center; overflow: hidden; position: relative;
-  }
-  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-  .photo.has-img { background: #fff; }
-  .photo.has-img::after { display: none; }
-  .photo::after { content: ''; position: absolute; inset: auto -25% -25% auto; width: 70%; height: 50%; border-radius: 50%; background: var(--accent); opacity: .2; }
-  .nc-body { padding: 26px 22px; display: flex; flex-direction: column; justify-content: center; }
-  .nc-name { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -.3px; }
-  .nc-role { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 18px; }
-  .nc-row { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; padding: 8px 0; border-top: 1px solid var(--line); }
-  .nc-row .ic { width: 18px; flex-shrink: 0; color: var(--accent); font-weight: 700; }
+  .namecard::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--navy), var(--accent)); }
+  .nc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .photo { width: 76px; height: 76px; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent); background: var(--bg-soft); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+  .nc-name { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -.3px; line-height: 1.3; }
+  .nc-role { font-size: 13px; color: var(--accent); font-weight: 700; }
+  .nc-row { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; padding: 9px 0; border-top: 1px solid var(--line); }
+  .nc-row .ic { width: 18px; flex-shrink: 0; }
   .nc-row a:hover { color: var(--navy); text-decoration: underline; }
   .hero-side { display: flex; flex-direction: column; gap: 14px; }
   .socials { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
@@ -175,9 +168,8 @@
   .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .skill-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
   .skill-group h4 { color: var(--navy); margin-bottom: 14px; font-size: 17px; }
-  .bar { margin-bottom: 12px; font-size: 14px; }
-  .bar .track { height: 6px; background: var(--bg-soft); border-radius: 99px; margin-top: 5px; overflow: hidden; }
-  .bar .fill { height: 100%; background: var(--navy); border-radius: 99px; }
+  .skill-group .chips { margin-top: 0; }
+  .skill-group .chip { background: var(--bg-soft); color: var(--navy); font-size: 13.5px; }
 
   /* ── 5. 학력 · 경험 타임라인 ── */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -226,12 +218,10 @@
     .hero { padding: 56px 0 64px; }
     .hero .wrap, .about-grid, .cols { grid-template-columns: 1fr; gap: 36px; }
     .hero-side { order: -1; }
-    .namecard { grid-template-columns: 40% 1fr; }
-    .namecard .photo { aspect-ratio: auto; min-height: 190px; }
-    .nc-body { padding: 18px 16px; }
-    .nc-name { font-size: 20px; }
-    .nc-role { margin-bottom: 10px; }
-    .nc-row { font-size: 13px; padding: 6px 0; word-break: break-all; }
+    .namecard { padding: 24px 20px 16px; }
+    .photo { width: 64px; height: 64px; }
+    .nc-name { font-size: 21px; }
+    .nc-row { font-size: 13px; word-break: break-all; }
     .archive { grid-template-columns: 1fr; }
     .hero h1 { font-size: 34px; }
     .hero p.lead { font-size: 17px; }
@@ -247,7 +237,7 @@
 <!-- ════════ 상단 메뉴 ════════ -->
 <nav>
   <div class="wrap">
-    <a href="#top" class="logo">이용진</a>
+    <a href="#top" class="logo" data-i="이름"></a>
     <div class="menu">
       <a href="#edge">My Edge</a>
       <a href="#about">About</a>
@@ -269,8 +259,8 @@
            · 공간을 자산으로, 자산을 숫자로 — 이용진
            · 리츠를 뜯어보는 게 제일 재밌는 이용진입니다
            <em>…</em> 안에 넣은 단어가 골드색으로 강조됨) -->
-      <h1>숫자로 자산의 가치를<br><em>증명하는</em> 이용진입니다</h1>
-      <p class="lead"><span data-i="학교">단국대학교</span> <span data-i="학과학년">도시계획부동산학부 3학년</span>. 리츠·투자분석 등 부동산금융을 중심으로 공부하고, 도시계획 지식으로 숫자 뒤의 입지와 개발 맥락까지 읽습니다.</p>
+      <h1 id="headline"></h1>
+      <p class="lead" data-i="소개문장"></p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">함께 일하고 싶다면 →</a>
         <a href="#projects" class="btn btn-ghost">프로젝트 보기</a>
@@ -286,16 +276,16 @@
     <!-- ✏️ 명함 카드 -->
     <div class="namecard">
       <!-- 프로필 사진: images/profile.jpg 를 바꾸면 교체됨 -->
-      <div class="photo has-img">
-        <img src="images/profile.jpg" alt="이용진 프로필 사진">
+      <div class="nc-head">
+        <div class="photo"><img src="images/profile.jpg" alt="프로필 사진"></div>
+        <div>
+          <div class="nc-name" data-i="이름"></div>
+          <div class="nc-role">Real Estate Finance</div>
+        </div>
       </div>
-      <div class="nc-body">
-        <div class="nc-name" data-i="이름">이용진</div>
-        <div class="nc-role">Real Estate Finance</div>
-        <div class="nc-row"><span class="ic">🎓</span><span><span data-i="학교">단국대학교</span><br><span data-i="학과학년">도시계획부동산학부 3학년</span></span></div>
-        <div class="nc-row" data-row><span class="ic">✉️</span><a data-link="이메일" data-pre="mailto:" data-i="이메일"></a></div>
-        <div class="nc-row" data-row><span class="ic">📞</span><a data-link="전화" data-pre="tel:" data-i="전화"></a></div>
-      </div>
+      <div class="nc-row"><span class="ic">🎓</span><span><span data-i="학교"></span><br><span data-i="학과학년"></span></span></div>
+      <div class="nc-row" data-row><span class="ic">✉️</span><a data-link="이메일" data-pre="mailto:" data-i="이메일"></a></div>
+      <div class="nc-row" data-row><span class="ic">📞</span><a data-link="전화" data-pre="tel:" data-i="전화"></a></div>
     </div>
     <!-- SNS 링크: info.js 에 주소를 적으면 버튼이 나타남 -->
     <div class="socials">
@@ -371,16 +361,16 @@
 
     <!-- ✏️ 성격 · MBTI -->
     <div class="persona">
-      <div class="persona-card reveal">
+      <div class="persona-card reveal" data-need="MBTI">
         <div class="big" data-i="MBTI" data-ph="[MBTI]"></div>
         <h4 data-i="MBTI별명" data-ph="[MBTI 별명]"></h4>
         <p data-i="MBTI설명" data-ph="[이 성향이 일할 때 어떻게 드러나는지]"></p>
       </div>
-      <div class="persona-card reveal">
+      <div class="persona-card reveal" data-need="강점">
         <h4>💪 강점</h4>
         <p data-i="강점" data-ph="[성격 장점 + 근거가 되는 짧은 에피소드]"></p>
       </div>
-      <div class="persona-card reveal">
+      <div class="persona-card reveal" data-need="일하는방식">
         <h4>🤝 일하는 방식</h4>
         <p data-i="일하는방식" data-ph="[팀에서 주로 맡는 역할, 협업 스타일]"></p>
       </div>
@@ -572,78 +562,39 @@
   </div>
 </section>
 
-<!-- ════════ 4. 역량 ════════ -->
+<!-- ════════ 4. 역량 (info.js 의 "역량" 목록) ════════ -->
 <section id="skills">
   <div class="wrap">
     <div class="eyebrow reveal">Skills</div>
     <h2 class="reveal">할 수 있는 것</h2>
-    <div class="skills">
-      <!-- ✏️ 숫자(%)는 style="width:00%" 부분을 바꾸면 됨 -->
-      <div class="skill-group reveal">
-        <h4>📊 부동산금융 지식</h4>
-        <div class="bar">리츠 구조·배당 분석<div class="track"><div class="fill" style="width:80%"></div></div></div>
-        <div class="bar">[투자지표 NOI·Cap rate 등]<div class="track"><div class="fill" style="width:70%"></div></div></div>
-        <div class="bar">[스킬]<div class="track"><div class="fill" style="width:60%"></div></div></div>
-      </div>
-      <div class="skill-group reveal">
-        <h4>🏙️ 도시계획 (부동산을 읽는 바탕)</h4>
-        <div class="bar">[토지이용·도시계획 제도]<div class="track"><div class="fill" style="width:75%"></div></div></div>
-        <div class="bar">[입지·상권 분석]<div class="track"><div class="fill" style="width:70%"></div></div></div>
-        <div class="bar">[GIS / 도면 툴]<div class="track"><div class="fill" style="width:60%"></div></div></div>
-      </div>
-      <div class="skill-group reveal">
-        <h4>💻 툴 · 데이터</h4>
-        <div class="bar">Excel<div class="track"><div class="fill" style="width:80%"></div></div></div>
-        <div class="bar">[PowerPoint]<div class="track"><div class="fill" style="width:75%"></div></div></div>
-        <div class="bar">AI 활용 · 바이브코딩<div class="track"><div class="fill" style="width:70%"></div></div></div>
-      </div>
-      <div class="skill-group reveal">
-        <h4>🌐 어학 · 소통</h4>
-        <div class="bar">영어 (TOEIC <span data-i="토익"></span>)<div class="track"><div class="fill" style="width:70%"></div></div></div>
-        <div class="bar">[발표·보고서 작성]<div class="track"><div class="fill" style="width:80%"></div></div></div>
-        <div class="bar">[스킬]<div class="track"><div class="fill" style="width:60%"></div></div></div>
-      </div>
-    </div>
+    <div class="skills" id="skills-list"></div>
   </div>
 </section>
 
-<!-- ════════ 5. 학력 · 경험 · 자격증 ════════ -->
+<!-- ════════ 5. 학력 · 경험 · 자격증 (info.js 의 "경력", "자격증" 목록) ════════ -->
 <section class="soft" id="career">
   <div class="wrap">
     <div class="eyebrow reveal">Career</div>
     <h2 class="reveal">걸어온 길</h2>
     <div class="cols">
-      <div class="reveal">
-        <h3>학력 · 대외활동 · 수상</h3>
-        <!-- ✏️ 최신순으로 -->
-        <div class="timeline">
-          <div class="tl-item"><div class="date">[2026.09 – 현재]</div><h4>[활동명 / 인턴]</h4><p>[무엇을 했고 무엇을 얻었는지 한 줄]</p></div>
-          <div class="tl-item"><div class="date">[2025.00]</div><h4>[공모전 · 수상]</h4><p>[내용]</p></div>
-          <div class="tl-item"><div class="date">[20XX.03 – 현재]</div><h4>[학교] [학과]</h4><p>[주요 수강과목: 부동산금융입문, 부동산 프롭테크, 도시계획 관련 과목 …]</p></div>
-        </div>
+      <div id="career-col">
+        <h3>학력 · 활동 · 수상</h3>
+        <div class="timeline" id="career-list"></div>
       </div>
-      <div class="reveal">
+      <div id="cert-col">
         <h3>자격증 · 어학</h3>
-        <div class="certs">
-          <!-- info.js 에 적은 값이 표시됨 (비우면 숨김) -->
-          <div class="cert" data-row><b>TOEIC</b><span data-i="토익"></span></div>
-          <div class="cert" data-row><b>한국사능력검정시험</b><span data-i="한능검"></span></div>
-        </div>
+        <div class="certs" id="cert-list"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ 6. 함께 일하면 좋은 이유 ════════ -->
-<section>
+<!-- ════════ 6. 함께 일하면 좋은 이유 (info.js 의 "약속" 목록) ════════ -->
+<section id="why">
   <div class="wrap">
     <div class="eyebrow reveal">Why me</div>
     <h2 class="reveal">저와 함께 일하면</h2>
-    <div class="why">
-      <div class="why-card reveal"><div class="num">01</div><h4>[약속 1]</h4><p>[근거가 되는 경험]</p></div>
-      <div class="why-card reveal"><div class="num">02</div><h4>[약속 2]</h4><p>[근거가 되는 경험]</p></div>
-      <div class="why-card reveal"><div class="num">03</div><h4>[약속 3]</h4><p>[근거가 되는 경험]</p></div>
-    </div>
+    <div class="why" id="why-list"></div>
   </div>
 </section>
 
@@ -666,28 +617,70 @@
     </div>
   </div>
 </section>
-<footer>© 2026 이용진 · Built with vibe coding</footer>
+<footer>© 2026 <span data-i="이름"></span> · Built with vibe coding</footer>
 
 <div class="toast" id="toast">이메일 주소를 복사했어요</div>
 
-<script src="info.js"></script>
+<script>document.write('<script src="info.js?v=' + Date.now() + '"><\/script>');</script>
 <script>
-  // info.js 의 값을 화면에 채움. 빈 값이면 그 줄(data-row)이나 버튼(data-link)을 숨김
-  const I = window.MY_INFO || {};
-  document.querySelectorAll('[data-i]').forEach(el => {
-    const v = (I[el.dataset.i] || '').trim();
-    if (v) el.textContent = v;
-    else if (el.closest('[data-row]')) el.closest('[data-row]').style.display = 'none';
-    else if (el.dataset.ph) { el.textContent = el.dataset.ph; el.classList.add('placeholder'); }
-  });
-  document.querySelectorAll('[data-link]').forEach(el => {
-    const v = (I[el.dataset.link] || '').trim();
-    if (!v) { el.style.display = 'none'; return; }
-    const pre = el.dataset.pre || '';
-    if (el.tagName === 'A') el.href = pre + (pre === 'tel:' ? v.replace(/[^0-9+]/g, '') : v);
-  });
-  if (I.이름) document.title = I.이름 + ' | 부동산금융 포트폴리오';
-  const EMAIL = I.이메일 || '';
+  // info.js 의 값을 화면에 채움. 빈 값이면 그 줄·카드·버튼·섹션을 숨김. 편집 모드에서 다시 호출됨
+  function renderInfo(I) {
+    const val = k => String(I[k] == null ? '' : I[k]).trim();
+    const list = k => (Array.isArray(I[k]) ? I[k] : []).map(l => String(l).split('|').map(x => x.trim())).filter(a => a[0]);
+    const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+    document.querySelectorAll('[data-i]').forEach(el => {
+      const v = val(el.dataset.i); el.textContent = v;
+      const row = el.closest('[data-row]');
+      if (row) row.hidden = !v; else el.hidden = !v;
+    });
+    document.querySelectorAll('[data-need]').forEach(el => { el.hidden = !val(el.dataset.need); });
+    document.querySelectorAll('[data-link]').forEach(el => {
+      const v = val(el.dataset.link), pre = el.dataset.pre || '';
+      el.hidden = !v;
+      if (v && el.tagName === 'A') el.href = pre + (pre === 'tel:' ? v.replace(/[^0-9+]/g, '') : v);
+    });
+
+    // 한 줄 소개: 윗줄 / 강조(골드) 아랫줄
+    const h = document.getElementById('headline'); h.textContent = '';
+    h.append(val('한줄_윗줄'), document.createElement('br'), mk('em', '', val('한줄_강조')), ' ' + val('한줄_아랫줄'));
+
+    // 역량: "분야 | 항목, 항목"
+    const sk = document.getElementById('skills-list'); sk.textContent = '';
+    list('역량').forEach(([g, items]) => {
+      const box = mk('div', 'skill-group'); box.append(mk('h4', '', g));
+      const chips = mk('div', 'chips');
+      (items || '').split(',').map(x => x.trim()).filter(Boolean).forEach(x => chips.append(mk('span', 'chip', x)));
+      box.append(chips); sk.append(box);
+    });
+    // 경력: "기간 | 제목 | 설명"
+    const cl = document.getElementById('career-list'); cl.textContent = '';
+    list('경력').forEach(([d, t, x]) => {
+      const it = mk('div', 'tl-item'); it.append(mk('div', 'date', d), mk('h4', '', t || ''), mk('p', '', x || '')); cl.append(it);
+    });
+    // 자격증: "이름 | 내용"
+    const ce = document.getElementById('cert-list'); ce.textContent = '';
+    list('자격증').forEach(([n, x]) => { const c = mk('div', 'cert'); c.append(mk('b', '', n), mk('span', '', x || '')); ce.append(c); });
+    // 약속: "제목 | 근거"
+    const wl = document.getElementById('why-list'); wl.textContent = '';
+    list('약속').forEach(([t, x], n) => {
+      const c = mk('div', 'why-card'); c.append(mk('div', 'num', String(n + 1).padStart(2, '0')), mk('h4', '', t), mk('p', '', x || '')); wl.append(c);
+    });
+
+    // 내용이 없는 섹션은 통째로 숨김 (메뉴 링크도)
+    const show = (id, on) => { document.getElementById(id).hidden = !on; const a = document.querySelector('.menu a[href="#' + id + '"]'); if (a) a.hidden = !on; };
+    document.getElementById('career-col').hidden = !cl.children.length;
+    document.getElementById('cert-col').hidden = !ce.children.length;
+    show('skills', sk.children.length); show('career', cl.children.length || ce.children.length); show('why', wl.children.length);
+
+    if (val('이름')) document.title = val('이름') + ' | 부동산금융 포트폴리오';
+    EMAIL = val('이메일');
+  }
+  let EMAIL = '';
+  renderInfo(window.MY_INFO || {});
+  // 주소 뒤에 ?edit 을 붙이면 편집 모드
+  if (new URLSearchParams(location.search).has('edit')) { const sc = document.createElement('script'); sc.src = 'edit.js?v=' + Date.now(); document.body.appendChild(sc); }
+
   function copyEmail() {
     const done = () => { const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); };
     if (navigator.clipboard) navigator.clipboard.writeText(EMAIL).then(done, done); else done();

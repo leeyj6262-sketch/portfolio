@@ -227,6 +227,27 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
   .reveal.on { opacity: 1; transform: none; }
 
+  /* ── 첫 화면 야경 배경 (images/hero.jpg) ── */
+  .hero { background: #0c1328 url(images/hero.jpg) center bottom / max(100%, 1100px) auto no-repeat; }
+  .hero h1 { color: #fff; }
+  .hero p.lead { color: rgba(255,255,255,.8); }
+  .hero .hero-tag { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.18); }
+  .hero .btn-primary { background: var(--accent); color: var(--navy); }
+  .hero .btn-primary:hover { background: #d8b45f; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+  .hero .btn-ghost { background: rgba(12,19,40,.35); color: #fff; border-color: rgba(255,255,255,.55); }
+  .hero .btn-ghost:hover { background: rgba(255,255,255,.12); }
+  .hero .stat b { color: #fff; font-variant-numeric: tabular-nums; }
+  .hero .stat span { color: rgba(255,255,255,.7); }
+  .hero .namecard { border: 0; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+  .hero .social { border-color: transparent; }
+
+  /* ── 연락처 QR ── */
+  .qr-box { display: inline-flex; align-items: center; gap: 18px; text-align: left; margin-top: 34px; padding: 16px 22px 16px 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); }
+  .qr-box #qr { background: #fff; padding: 8px; border-radius: 10px; line-height: 0; }
+  .qr-box #qr img { width: 132px; height: 132px; image-rendering: pixelated; }
+  .qr-box b { color: #fff; font-size: 16px; }
+  .qr-box p { font-size: 14px; color: rgba(255,255,255,.72); margin-top: 4px; max-width: 210px; }
+
   /* ── 모바일 (QR로 들어오면 대부분 폰) ── */
   @media (max-width: 820px) {
     .menu { display: none; }
@@ -640,12 +661,18 @@
       <span data-row>✉️ <span data-i="이메일"></span></span>
       <span data-row>📞 <span data-i="전화"></span></span>
     </div>
+    <!-- 찍으면 주소록에 저장되는 QR (info.js 의 이름·전화·이메일로 자동 생성) -->
+    <div class="qr-box" id="qr-box" hidden>
+      <div id="qr"></div>
+      <div><b>QR로 연락처 저장</b><p>휴대폰 카메라로 찍으면 이름·전화·이메일이 주소록에 저장됩니다.</p></div>
+    </div>
   </div>
 </section>
 <footer>© 2026 <span data-i="이름"></span> · Built with vibe coding</footer>
 
 <div class="toast" id="toast">이메일 주소를 복사했어요</div>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <script>document.write('<script src="info.js?v=' + Date.now() + '"><\/script>');</script>
 <script>
   // info.js 의 값을 화면에 채움. 빈 값이면 그 줄·카드·버튼·섹션을 숨김. 편집 모드에서 다시 호출됨
@@ -705,9 +732,40 @@
 
     if (val('이름')) document.title = val('이름') + ' | 부동산금융 포트폴리오';
     EMAIL = val('이메일');
+
+    // 연락처 QR (vCard). 전화나 이메일이 있을 때만 표시
+    const qb = document.getElementById('qr-box');
+    qb.hidden = !(window.qrcode && (val('전화') || val('이메일')));
+    if (!qb.hidden) {
+      const v = ['BEGIN:VCARD', 'VERSION:3.0', 'N:' + val('이름') + ';;;;', 'FN:' + val('이름'), 'ORG:' + val('학교')];
+      if (val('전화')) v.push('TEL;TYPE=CELL:' + val('전화'));
+      if (val('이메일')) v.push('EMAIL:' + val('이메일'));
+      v.push('URL:' + location.origin + location.pathname.replace(/[^/]*$/, ''), 'END:VCARD');
+      qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+      const q = qrcode(0, 'M'); q.addData(v.join('\n')); q.make();
+      const img = new Image(); img.src = q.createDataURL(4, 0); img.alt = '연락처 QR 코드';
+      const box = document.getElementById('qr'); box.textContent = ''; box.append(img);
+    }
   }
   let EMAIL = '';
   renderInfo(window.MY_INFO || {});
+
+  // 첫 화면 숫자가 0에서부터 올라가는 효과 (처음 보일 때 한 번)
+  const statBox = document.querySelector('.stats');
+  new IntersectionObserver((es, ob) => {
+    if (!es[0].isIntersecting) return; ob.disconnect();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    statBox.querySelectorAll('.stat b').forEach(b => {
+      const m = b.textContent.match(/^([\d,]+)(.*)$/); if (!m) return;
+      const target = parseInt(m[1].replace(/,/g, ''), 10), suffix = m[2], t0 = performance.now(), dur = 1400;
+      const step = t => {
+        const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        b.textContent = Math.round(target * e).toLocaleString('en-US') + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold: .4 }).observe(statBox);
   // 주소 뒤에 ?edit 을 붙이면 편집 모드
   if (new URLSearchParams(location.search).has('edit')) { const sc = document.createElement('script'); sc.src = 'edit.js?v=' + Date.now(); document.body.appendChild(sc); }
 

@@ -185,6 +185,14 @@
   .cert b { color: var(--navy); }
   .cert span { font-size: 14px; color: var(--muted); }
 
+  /* ── 5-1. 지금 준비 중인 것 ── */
+  .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .next-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: #fff; }
+  .next-card .st { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #faf3e3; color: #8a6a1f; margin-bottom: 10px; }
+  .next-card .st.now { background: var(--navy); color: var(--accent); }
+  .next-card h4 { font-size: 17px; color: var(--navy); margin-bottom: 4px; }
+  .next-card p { font-size: 14px; color: var(--muted); }
+
   /* ── 6. 함께 일하면 ── */
   .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .why-card { padding: 30px; border-radius: var(--radius); background: var(--navy); color: #fff; }
@@ -229,7 +237,7 @@
     .stats { margin-top: 40px; }
     .stat b { font-size: 24px; }
     h2 { font-size: 26px; margin-bottom: 28px; }
-    .persona, .projects, .skills, .why, .edge-grid { grid-template-columns: 1fr; }
+    .persona, .projects, .skills, .why, .edge-grid, .next-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -265,6 +273,7 @@
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">이용진이라는 인재와 함께 일할 기회 얻기</a>
         <a href="#projects" class="btn btn-ghost">프로젝트 보기</a>
+        <a href="resume.html" class="btn btn-ghost">📄 이력서 PDF</a>
       </div>
       <!-- ✏️ 나를 보여주는 숫자 3개 -->
       <div class="stats">
@@ -587,8 +596,16 @@
   </div>
 </section>
 
+<!-- ════════ 5-1. 지금 준비 중인 것 (info.js 의 "준비중" 목록) ════════ -->
+<section id="next">
+  <div class="wrap">
+    <h2 class="reveal">Next Step</h2>
+    <div class="next-grid" id="next-list"></div>
+  </div>
+</section>
+
 <!-- ════════ 6. 함께 일하면 좋은 이유 (info.js 의 "약속" 목록) ════════ -->
-<section id="why">
+<section class="soft" id="why">
   <div class="wrap">
     <h2 class="reveal">Why me</h2>
     <div class="why" id="why-list"></div>
@@ -609,6 +626,7 @@
       <a class="btn btn-ghost" data-link="카카오오픈채팅" target="_blank" rel="noopener">💬 카카오톡</a>
       <a class="btn btn-ghost" data-link="인스타그램" target="_blank" rel="noopener">📷 Instagram</a>
       <a class="btn btn-ghost" data-link="링크드인" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="btn btn-ghost" href="resume.html">📄 이력서 PDF</a>
     </div>
     <div class="contact-list">
       <span data-row>✉️ <span data-i="이메일"></span></span>
@@ -660,6 +678,11 @@
     // 자격증: "이름 | 내용"
     const ce = document.getElementById('cert-list'); ce.textContent = '';
     list('자격증').forEach(([n, x]) => { const c = mk('div', 'cert'); c.append(mk('b', '', n), mk('span', '', x || '')); ce.append(c); });
+    // 준비중: "상태 | 제목 | 설명"  (상태에 '예정'이 없으면 진행 중으로 진하게 표시)
+    const nl = document.getElementById('next-list'); nl.textContent = '';
+    list('준비중').forEach(([st, t, x]) => {
+      const c = mk('div', 'next-card'); c.append(mk('span', 'st' + (st.includes('예정') ? '' : ' now'), st), mk('h4', '', t || ''), mk('p', '', x || '')); nl.append(c);
+    });
     // 약속: "제목 | 근거"
     const wl = document.getElementById('why-list'); wl.textContent = '';
     list('약속').forEach(([t, x], n) => {
@@ -670,7 +693,7 @@
     const show = (id, on) => { document.getElementById(id).hidden = !on; const a = document.querySelector('.menu a[href="#' + id + '"]'); if (a) a.hidden = !on; };
     document.getElementById('career-col').hidden = !cl.children.length;
     document.getElementById('cert-col').hidden = !ce.children.length;
-    show('skills', sk.children.length); show('career', cl.children.length || ce.children.length); show('why', wl.children.length);
+    show('skills', sk.children.length); show('career', cl.children.length || ce.children.length); show('why', wl.children.length); show('next', nl.children.length);
 
     if (val('이름')) document.title = val('이름') + ' | 부동산금융 포트폴리오';
     EMAIL = val('이메일');

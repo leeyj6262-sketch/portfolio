@@ -49,6 +49,6 @@ window.MY_INFO = {
   ],
   "링크드인": "https://www.linkedin.com/in/yongjin-lee-240b64347",
   "블로그": "",
-  "인스타그램": "",
+  "인스타그램": "https://www.instagram.com/yjin2222",
   "카카오오픈채팅": ""
 };

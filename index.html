@@ -120,6 +120,8 @@
   /* ── 2. About ── */
   .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
   .about-text p { font-size: 17px; margin-bottom: 16px; }
+  .about-text p[data-i] { padding-left: 1.1em; text-indent: -1.1em; margin-bottom: 12px; }
+  .about-text p[data-i]::before { content: '- '; color: var(--accent); font-weight: 700; }
   .info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
   .info-row { display: grid; grid-template-columns: 84px 1fr; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
   .info-row:last-child { border-bottom: 0; }
@@ -293,7 +295,6 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <span class="hero-tag">🏢 도시계획에 기반한 부동산 금융</span>
       <!-- ✏️ 한 줄 정체성 (나중에 교체 예정. 후보:
            · 데이터로 부동산의 내일을 읽는 이용진입니다
            · 공간을 자산으로, 자산을 숫자로 — 이용진
@@ -350,21 +351,21 @@
         <div class="edge-arrow">↓</div>
         <div class="edge-to"><span>부동산 금융</span>땅의 지금 가격이 아니라 <b>바뀔 수 있는 가치</b>를 봅니다</div>
         <p>시가화 예정용지, 용도 변경 가능성, 공간구조 재편 방향은 개발 사업성과 자산가치 전망의 출발점입니다.</p>
-        <a href="#projects" class="edge-proof">근거 · 대전 2040 도시기본계획 분석, 춘천 토지이용계획</a>
+        <a href="#projects" class="edge-proof">근거 → 대전 2040 도시기본계획 분석, 춘천 토지이용계획</a>
       </article>
       <article class="edge-card reveal">
         <div class="edge-from"><span>도시계획</span>개발사업이 왜 성공하고 실패하는지 압니다</div>
         <div class="edge-arrow">↓</div>
         <div class="edge-to"><span>부동산 금융</span><b>공실·미분양 리스크</b>를 입지와 앵커시설로 따집니다</div>
         <p>같은 업무지구라도 문정은 채워지고 동탄 테크노밸리는 공실률 50~60%가 된 이유를 비교해 봤습니다.</p>
-        <a href="#projects" class="edge-proof">근거 · 동탄 테크노밸리 연구계획, 래미안 퍼스티지 단지 분석</a>
+        <a href="#projects" class="edge-proof">근거 → 동탄 테크노밸리 연구계획, 래미안 퍼스티지 단지 분석</a>
       </article>
       <article class="edge-card reveal">
         <div class="edge-from"><span>도시계획</span>공원·교통 인프라가 도시를 바꾸는 방식을 압니다</div>
         <div class="edge-arrow">↓</div>
         <div class="edge-to"><span>부동산 금융</span>인프라 변화를 <b>가격·수요 가정</b>에 반영합니다</div>
         <p>GTX-A 개통 기대가 파주 집값에 준 영향, 공원 배치에 따라 달라지는 가격 프리미엄을 직접 분석했습니다.</p>
-        <a href="#projects" class="edge-proof">근거 · 파주시 가격탄력성 실증분석, 도시공원 배치 패턴 연구</a>
+        <a href="#projects" class="edge-proof">근거 → 파주시 가격탄력성 실증분석, 도시공원 배치 패턴 연구</a>
       </article>
     </div>
   </div>

@@ -31,7 +31,8 @@
   .row { display: grid; grid-template-columns: 118px 1fr; gap: 10px; padding: 3px 0; break-inside: avoid; }
   .row .k { color: var(--muted); }
   .row b { color: var(--navy); }
-  p.intro { margin-bottom: 5px; }
+  p.intro { margin-bottom: 4px; padding-left: 1em; text-indent: -1em; }
+  p.intro::before { content: '- '; }
   .proj { padding: 4px 0; break-inside: avoid; }
   .proj b { color: var(--navy); }
   .proj span { color: var(--muted); font-size: 12.5px; }

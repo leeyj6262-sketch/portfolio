@@ -365,6 +365,53 @@
     .next-card { grid-template-columns: 1fr; gap: 2px; }
     .why-card { margin-bottom: 26px; }
   }
+
+  /* ── 대표 프로젝트 상세 + 계산기 ── */
+  .sub-label { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin: 8px 0 14px; }
+  .cases { margin-bottom: 56px; }
+  .case { border-top: 1px solid var(--navy); padding: 22px 0 30px; }
+  .case header { display: grid; grid-template-columns: 1fr auto; gap: 2px 20px; align-items: end; margin-bottom: 18px; }
+  .case header .doc-meta { grid-column: 1 / -1; }
+  .case h3 { font-family: var(--serif); font-size: 22px; color: var(--navy); letter-spacing: -.4px; line-height: 1.4; }
+  .case header a { font-size: 14px; font-weight: 600; color: var(--navy); border-bottom: 1px solid var(--navy); white-space: nowrap; }
+  .case header a:hover { color: var(--accent); border-color: var(--accent); }
+  .case-grid { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr 1fr; gap: 0 28px; }
+  .case-grid h5 { font-size: 12px; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .case-grid p, .case-grid li { font-size: 14px; line-height: 1.65; color: var(--text); }
+  .case-grid ul { list-style: none; }
+  .case-grid li { padding-left: 12px; text-indent: -12px; margin-bottom: 5px; }
+  .case-grid li::before { content: '·'; color: var(--accent); font-weight: 700; margin-right: 7px; }
+  .case-grid b { color: var(--navy); font-weight: 800; }
+
+  .calc { margin-top: 24px; background: var(--bg-soft); border-left: 3px solid var(--accent); padding: 20px 24px 22px; }
+  .calc-head b { color: var(--navy); font-size: 16px; }
+  .calc-head span { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .calc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 18px; align-items: start; }
+  .calc-in label { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--navy); margin-top: 12px; }
+  .calc-in label:first-child { margin-top: 0; }
+  .calc-in output { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .calc-in input[type=range] { width: 100%; margin: 8px 0 2px; accent-color: var(--navy); }
+  .calc-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .calc-presets button { border: 1px solid var(--navy); background: #fff; color: var(--navy); border-radius: 2px; padding: 6px 12px; font: 600 13px inherit; cursor: pointer; }
+  .calc-presets button:hover { background: var(--navy); color: #fff; }
+  .calc-out { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .calc-num span { display: block; font-size: 12px; color: var(--muted); }
+  .calc-num b { font-family: var(--serif); font-size: 28px; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1.3; }
+  .calc-num b.neg { color: #b3261e; }
+  .calc-bar { grid-column: 1 / -1; height: 8px; background: #dfe3ec; margin-top: 6px; }
+  .calc-bar i { display: block; height: 100%; background: var(--navy); transition: width .15s; }
+  .calc-out p { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+
+  @media (max-width: 820px) {
+    .case header { grid-template-columns: 1fr; }
+    .case header a { justify-self: start; margin-top: 8px; }
+    .case h3 { font-size: 19px; }
+    .case-grid { grid-template-columns: 1fr; }
+    .case-grid > div { margin-bottom: 14px; }
+    .calc { padding: 18px 16px 20px; }
+    .calc-body { grid-template-columns: 1fr; gap: 20px; }
+    .calc-num b { font-size: 24px; }
+  }
 </style>
 </head>
 <body>
@@ -518,6 +565,101 @@
     <div class="eyebrow reveal">Projects</div>
     <h2 class="reveal">대학생활 프로젝트 만나보기</h2>
     <p class="section-lead reveal">자료를 누르면 원본 자료 감상이 가능합니다</p>
+    <!-- ════ 대표 프로젝트 3개: 목표 → 접근 → 결과 → 역할 (내용은 각 보고서에서 그대로 가져옴) ════ -->
+    <div class="sub-label">Featured</div>
+    <div class="cases">
+
+      <article class="case">
+        <header>
+          <div class="doc-meta">2026-1 · 부동산금융입문 · 개인</div>
+          <h3>신한알파리츠 가치평가·리스크 분석</h3>
+          <a href="files/2026-1_shinhan-alpha-reit.pdf" target="_blank" rel="noopener">보고서 보기 ↗</a>
+        </header>
+        <div class="case-grid">
+          <div><h5>목표</h5><p>오피스 리츠 신한알파리츠의 적정 가치를 구하고, 금리가 오를 때 그 가치가 얼마나 흔들리는지 검증</p></div>
+          <div><h5>접근</h5><ul>
+            <li>KRX·한국은행 ECOS·R-ONE·DART에서 원자료 직접 수집 (일별 시세 1,914개, 거시 시계열 123개월)</li>
+            <li>수익환원법과 10년 DCF로 가치 산정, Cap Rate × NOI 4×4 스트레스 테스트</li>
+            <li>VECM으로 기준금리 충격의 파급 경로 분석, GARCH(1,1)·VaR로 하방위험 측정</li>
+            <li>4개 자산 평균-분산 최적화와 CAPM 베타 추정</li></ul></div>
+          <div><h5>결과</h5><ul>
+            <li>자산가치 <b>2.16조~2.80조 원</b> (수익환원법 21,600억, Exit Cap DCF 28,010억)</li>
+            <li>Cap Rate +100bp 시 <b>−16.7%</b>, 최악 시나리오(+150bp·NOI −15%) <b>−34.6%</b></li>
+            <li>금리 1%p 인상 시 주택 거래량이 먼저 −29.6%, 가격은 24개월에 걸쳐 −3.95%</li>
+            <li>시장 베타 0.036 → 증시보다 금리와 임대시장이 핵심 변수</li></ul></div>
+          <div><h5>역할</h5><p>개인 과제. 자료 수집, 분석, 보고서 작성까지 전 과정 수행. AI 도구로 분석한 결과를 엑셀 SOLVER·LINEST로 교차검증하고, ChatGPT와 Claude의 답을 서로 비교해 오류를 걸러냄</p></div>
+        </div>
+
+        <!-- 직접 해보는 계산기: 보고서 표 4(직접환원가치 변화율)와 같은 계산 -->
+        <div class="calc" id="calc">
+          <div class="calc-head"><b>직접 해보기 · Cap Rate 스트레스 테스트</b><span>슬라이더를 움직이면 신한알파리츠 자산가치가 어떻게 변하는지 바로 계산됩니다</span></div>
+          <div class="calc-body">
+            <div class="calc-in">
+              <label>Cap Rate 상승 <output id="c-cap-o">+100bp</output></label>
+              <input type="range" id="c-cap" min="0" max="200" step="10" value="100" aria-label="Cap Rate 상승 폭 (bp)">
+              <label>NOI 변화 <output id="c-noi-o">0%</output></label>
+              <input type="range" id="c-noi" min="-20" max="0" step="1" value="0" aria-label="NOI 변화율 (%)">
+              <div class="calc-presets">
+                <button type="button" data-cap="0" data-noi="0">기준</button>
+                <button type="button" data-cap="100" data-noi="0">금리 인상기 (+100bp)</button>
+                <button type="button" data-cap="150" data-noi="-15">최악 시나리오</button>
+              </div>
+            </div>
+            <div class="calc-out">
+              <div class="calc-num"><span>자산가치</span><b id="c-val">18,000억 원</b></div>
+              <div class="calc-num"><span>기준 대비</span><b id="c-chg" class="neg">−16.7%</b></div>
+              <div class="calc-bar"><i id="c-bar"></i></div>
+              <p>자산가치 = NOI ÷ Cap Rate. 직전 12개월 영업이익 1,080억 원을 NOI로, 기준 Cap Rate를 5.0%로 둔 수익환원법 (기준가치 21,600억 원)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <header>
+          <div class="doc-meta">2026-1 · 부동산경제입문 · 개인</div>
+          <h3>주택 공급 정책의 역설: 파주시 아파트 가격탄력성 실증분석</h3>
+          <a href="files/2026-1_paju-price-elasticity.pdf" target="_blank" rel="noopener">보고서 보기 ↗</a>
+        </header>
+        <div class="case-grid">
+          <div><h5>목표</h5><p>공급을 늘리면 집값이 안정된다는 가정이 파주시에서 실제로 성립했는지, ‘밀 시장 탄력성 역설’로 검증</p></div>
+          <div><h5>접근</h5><ul>
+            <li>국토부 실거래가 30,537건(2020~2025)과 R-ONE 가격지수 72개월 수집</li>
+            <li>공급 증가·수요 감소 충격별 균형 변화를 이론 모형으로 정리</li>
+            <li>연도별·기간별 탄력성 계수 산출</li>
+            <li>금리, 대출 규제, GTX-A 등 이론과 실제가 어긋난 요인 분석</li></ul></div>
+          <div><h5>결과</h5><ul>
+            <li>2022년 거래량 6,197건 → 2,365건 <b>(−61.8%)</b>, 탄력성 계수 <b>−11.72</b></li>
+            <li>단기 비탄력·중장기 탄력의 이중 수요 구조 확인</li>
+            <li>시장을 움직인 건 공급량보다 <b>금리와 대출 규제</b></li>
+            <li>금리 연동형 공급 조절, 역세권 중심 공급 등 정책 대안 제시</li></ul></div>
+          <div><h5>역할</h5><p>개인 과제. 데이터 수집·집계, 그래프 6종 작성, 정책 대안 도출. AI가 계산한 수치는 R-ONE 원자료와 직접 대조해 검증</p></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <header>
+          <div class="doc-meta">2026-1 · 도시및지역연구방법 · 개인</div>
+          <h3>도시공원 배치 패턴이 부동산 가격과 사회적 형평성에 미치는 영향</h3>
+          <a href="files/2026-1_park-layout-research-plan.pdf" target="_blank" rel="noopener">연구계획서 보기 ↗</a>
+        </header>
+        <div class="case-grid">
+          <div><h5>목표</h5><p>세금으로 만든 공원의 가격 편익이 누구에게 돌아가는지, 공원의 ‘배치 방식’에 따라 달라지는지 규명하는 연구 설계</p></div>
+          <div><h5>접근</h5><ul>
+            <li>서울 3개 사례 비교: 경의선숲길(선형, 6.3km), 마곡지구(분산형), 서울숲(대형 단일, 48만㎡)</li>
+            <li>영향권은 법정 공원 유치거리 기준인 500m·1km로 설정</li>
+            <li>국토부 실거래가, SGIS, 서울시 공원 공간자료를 GIS로 결합</li>
+            <li>소득은 공시가격·공시지가·주택유형·수급자 비율 4개 대리지표로 측정</li></ul></div>
+          <div><h5>가설</h5><ul>
+            <li>선형공원: 가격 편익이 공원 축 <b>500m 이내</b>에 집중</li>
+            <li>분산형: 소득계층 간 접근성 격차가 가장 작음</li>
+            <li>대형 단일형: 가격 프리미엄은 가장 크지만 형평성은 낮음</li></ul></div>
+          <div><h5>역할</h5><p>개인 연구계획서. 선행연구 비교 검토, 변수 정의, 표본과 분석 방법 설계</p></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="sub-label">All projects</div>
     <!-- 분야 필터: 버튼 data-cat 과 카드 data-cat 이 같아야 작동 (개수는 자동 계산) -->
     <div class="filters reveal">
       <button class="filter active" data-cat="all">전체</button>
@@ -878,6 +1020,26 @@
   }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Cap Rate 스트레스 테스트 계산기 (수익환원법: 가치 = NOI ÷ Cap Rate)
+  (function () {
+    const NOI = 1080, CAP = 0.05, BASE = NOI / CAP;   // 억원, 기준 Cap Rate 5.0% → 21,600억
+    const cap = document.getElementById('c-cap'), noi = document.getElementById('c-noi');
+    function calc() {
+      const dc = +cap.value, dn = +noi.value;
+      const v = NOI * (1 + dn / 100) / (CAP + dc / 10000), chg = (v / BASE - 1) * 100;
+      document.getElementById('c-cap-o').textContent = '+' + dc + 'bp (' + (CAP * 100 + dc / 100).toFixed(1) + '%)';
+      document.getElementById('c-noi-o').textContent = (dn < 0 ? '−' + Math.abs(dn) : '0') + '%';
+      document.getElementById('c-val').textContent = Math.round(v).toLocaleString('en-US') + '억 원';
+      const c = document.getElementById('c-chg');
+      c.textContent = (chg < -0.05 ? '−' + Math.abs(chg).toFixed(1) : '0.0') + '%';
+      c.classList.toggle('neg', chg < -0.05);
+      document.getElementById('c-bar').style.width = Math.max(0, Math.min(100, v / BASE * 100)) + '%';
+    }
+    cap.addEventListener('input', calc); noi.addEventListener('input', calc);
+    document.querySelectorAll('.calc-presets button').forEach(b => b.addEventListener('click', () => { cap.value = b.dataset.cap; noi.value = b.dataset.noi; calc(); }));
+    calc();
+  })();
 
   // 프로젝트 분야 필터 + 개수 자동 표시
   document.querySelectorAll('.filter').forEach(btn => {

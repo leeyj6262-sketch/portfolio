@@ -243,9 +243,10 @@
   .hero .social { border-color: transparent; }
 
   /* ── 연락처 QR ── */
-  .qr-box { display: inline-flex; align-items: center; gap: 18px; text-align: left; margin-top: 34px; padding: 16px 22px 16px 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); }
-  .qr-box #qr { background: #fff; padding: 8px; border-radius: 10px; line-height: 0; }
-  .qr-box #qr img { width: 132px; height: 132px; image-rendering: pixelated; }
+  .qr-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 34px; }
+  .qr-box { display: inline-flex; align-items: center; gap: 18px; text-align: left; padding: 16px 22px 16px 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); }
+  .qr-box .qr-img { background: #fff; padding: 8px; border-radius: 10px; line-height: 0; }
+  .qr-box .qr-img img { width: 132px; height: 132px; image-rendering: pixelated; }
   .qr-box b { color: #fff; font-size: 16px; }
   .qr-box p { font-size: 14px; color: rgba(255,255,255,.72); margin-top: 4px; max-width: 210px; }
 
@@ -662,10 +663,17 @@
       <span data-row>✉️ <span data-i="이메일"></span></span>
       <span data-row>📞 <span data-i="전화"></span></span>
     </div>
-    <!-- 찍으면 주소록에 저장되는 QR (info.js 의 이름·전화·이메일로 자동 생성) -->
-    <div class="qr-box" id="qr-box" hidden>
-      <div id="qr"></div>
-      <div><b>QR로 연락처 저장</b><p>휴대폰 카메라로 찍으면 이름·전화·이메일이 주소록에 저장됩니다.</p></div>
+    <div class="qr-row">
+      <!-- 네이버 QR: 찍으면 이 홈페이지가 열림 (images/naver-qr.png) -->
+      <div class="qr-box">
+        <div class="qr-img"><img src="images/naver-qr.png" alt="포트폴리오 홈페이지 QR 코드"></div>
+        <div><b>QR로 홈페이지 열기</b><p>휴대폰 카메라로 찍으면 이 포트폴리오가 바로 열립니다.</p></div>
+      </div>
+      <!-- 찍으면 주소록에 저장되는 QR (info.js 의 이름·전화·이메일로 자동 생성) -->
+      <div class="qr-box" id="qr-box" hidden>
+        <div class="qr-img" id="qr"></div>
+        <div><b>QR로 연락처 저장</b><p>휴대폰 카메라로 찍으면 이름·전화·이메일이 주소록에 저장됩니다.</p></div>
+      </div>
     </div>
   </div>
 </section>

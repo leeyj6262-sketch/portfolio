@@ -66,7 +66,7 @@
         <span>🔗 <a href="https://leeyj6262-sketch.github.io/portfolio/">leeyj6262-sketch.github.io/portfolio</a></span>
       </div>
     </div>
-    <div class="qr"><div id="qr"></div><span>포트폴리오 사이트</span></div>
+    <div class="qr"><img src="images/naver-qr.png" alt="포트폴리오 QR"><span>포트폴리오 사이트</span></div>
   </header>
 
   <section id="s-intro"><h2>About</h2>
@@ -97,7 +97,6 @@
   <section id="s-next"><h2>Next Step</h2><div id="next"></div></section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <script>document.write('<script src="info.js?v=' + Date.now() + '"><\/script>');</script>
 <script>
   const I = window.MY_INFO || {};
@@ -117,7 +116,6 @@
   fill('next', 's-next', list('준비중').map(([st, t, x]) => row(st, t, x)));
   document.getElementById('s-intro').hidden = !(val('자기소개1') || val('자기소개2') || val('자기소개3'));
   document.title = (val('이름') || '') + ' 이력서';
-  if (window.qrcode) { const q = qrcode(0, 'M'); q.addData('https://leeyj6262-sketch.github.io/portfolio/'); q.make(); const im = new Image(); im.src = q.createDataURL(4, 0); im.alt = '포트폴리오 QR'; document.getElementById('qr').append(im); }
 </script>
 </body>
 </html>
